@@ -15,33 +15,49 @@ namespace COMP3951_Lab5_WillOtterbein_dotnet
 
     public partial class MDIChildForm : Form
     {
+        // Default thickness and colors
+        const float DEFAULT_B1 = 5f;
+        const float DEFAULT_B2 = 20f;
+        readonly Color DEFAULT_C1 = Color.FromArgb(255, 0, 0, 0);
+        readonly Color DEFAULT_C2 = Color.FromArgb(255, 255, 255, 255);
 
-        readonly Brush PaneBrush1 = new SolidBrush(Color.FromArgb(255, 0, 0, 0));
-        readonly Brush PaneBrush2 = new SolidBrush(Color.FromArgb(255, 255, 255, 255));
-        Brush DrawingBrush;
-        float thickness;
+        // Settable versions of the above
+        float? b1 { get; set; } = null;
+        float? b2 { get; set; } = null;
+        Color? c1 { get; set; } = null;
+        Color? c2 { get; set; } = null;
 
-        Rectangle DrawingRect;
+        // Graphics objects
+        Pen DrawingPen { get; set; }
         Bitmap ImageBitmap;
+        Graphics g;
 
+        // Drawing logic stuff
         Point? PreviousPoint = null;
         bool Painting = false;
 
-        public MDIChildForm()
+        public MDIChildForm(int? width = null, int? height = null, Color? background = null)
         {
             InitializeComponent();
 
-            // Initialize w/ Blank Image, white background bitmap
-            ImageBitmap = new Bitmap(pictureBox1.Width, pictureBox1.Height);
-            using (Graphics g = Graphics.FromImage(ImageBitmap))
-            {
-                g.Clear(Color.FromArgb(255, 255, 255, 255));
-            }
-            
-            // Default pens and thickness
+            // Initialize bitmap
+            ImageBitmap = new Bitmap(
+                width ?? pictureBox1.Width,
+                height ?? pictureBox1.Height
+            );
+            // Size the picture box
             pictureBox1.Image = ImageBitmap;
-            DrawingBrush = PaneBrush1;
-            thickness = 5f;
+            pictureBox1.Size = ImageBitmap.Size;
+            panel1.AutoScrollMinSize = ImageBitmap.Size;
+
+            // Blank Image, white background bitmap, smooth drawing mode
+            g = Graphics.FromImage(ImageBitmap);
+            g.SmoothingMode = SmoothingMode.HighQuality;
+            g.Clear(background ?? DEFAULT_C2);
+
+
+            // Define the default brushes
+            DrawingPen = new(DEFAULT_C2, b1 ?? DEFAULT_B1) { EndCap = LineCap.Round };
         }
 
         /// <summary>
@@ -57,12 +73,10 @@ namespace COMP3951_Lab5_WillOtterbein_dotnet
             switch (e.Button)
             {
                 case MouseButtons.Left:
-                    DrawingBrush = PaneBrush1;
-                    thickness = 5f;
+                    DrawingPen = new(DEFAULT_C1, b1 ?? DEFAULT_B1) { EndCap = LineCap.Round };
                     break;
                 case MouseButtons.Right:
-                    DrawingBrush = PaneBrush2;
-                    thickness = 20f;
+                    DrawingPen = new(DEFAULT_C2, b2 ?? DEFAULT_B2) { EndCap = LineCap.Round };
                     break;
             }
 
@@ -95,12 +109,7 @@ namespace COMP3951_Lab5_WillOtterbein_dotnet
             if (PreviousPoint != null)
             {
                 // Draw lines to the bitmap
-                using (Graphics g = Graphics.FromImage(ImageBitmap))
-                using (GraphicsPath p = new())
-                {
-                    p.AddRectangle(new RectangleF(PreviousPoint.Value.X, PreviousPoint.Value.Y, thickness, thickness));
-                    g.FillPath(DrawingBrush, p);
-                }
+                g.DrawLine(DrawingPen, PreviousPoint.Value.X, PreviousPoint.Value.Y, e.X, e.Y);
             }
 
             // Invalidate the picture box -- make it redraw
@@ -112,12 +121,18 @@ namespace COMP3951_Lab5_WillOtterbein_dotnet
         {
         }
 
+        private void panel1_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
         /// <summary>
         /// Finalizer for the pane, dispose graphics resources used.
         /// </summary>
         ~MDIChildForm()
         {
             ImageBitmap.Dispose();
+            g.Dispose();
         }
     }
 }

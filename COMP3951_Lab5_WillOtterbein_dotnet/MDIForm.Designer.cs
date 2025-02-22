@@ -51,7 +51,7 @@
             menuStrip1.MdiWindowListItem = windowsToolStripMenuItem;
             menuStrip1.Name = "menuStrip1";
             menuStrip1.RenderMode = ToolStripRenderMode.System;
-            menuStrip1.Size = new Size(800, 24);
+            menuStrip1.Size = new Size(1184, 24);
             menuStrip1.TabIndex = 1;
             menuStrip1.Text = "menuStrip1";
             // 
@@ -86,27 +86,27 @@
             // 
             arrangeToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { cascadeToolStripMenuItem, horitonzalTilesToolStripMenuItem, verticalTilesToolStripMenuItem });
             arrangeToolStripMenuItem.Name = "arrangeToolStripMenuItem";
-            arrangeToolStripMenuItem.Size = new Size(180, 22);
+            arrangeToolStripMenuItem.Size = new Size(130, 22);
             arrangeToolStripMenuItem.Text = "Arrange";
             // 
             // cascadeToolStripMenuItem
             // 
             cascadeToolStripMenuItem.Name = "cascadeToolStripMenuItem";
-            cascadeToolStripMenuItem.Size = new Size(180, 22);
+            cascadeToolStripMenuItem.Size = new Size(156, 22);
             cascadeToolStripMenuItem.Text = "Cascade";
             cascadeToolStripMenuItem.Click += cascadeToolStripMenuItem_Click;
             // 
             // horitonzalTilesToolStripMenuItem
             // 
             horitonzalTilesToolStripMenuItem.Name = "horitonzalTilesToolStripMenuItem";
-            horitonzalTilesToolStripMenuItem.Size = new Size(180, 22);
+            horitonzalTilesToolStripMenuItem.Size = new Size(156, 22);
             horitonzalTilesToolStripMenuItem.Text = "Horitonzal Tiles";
             horitonzalTilesToolStripMenuItem.Click += cascadeToolStripMenuItem_Click;
             // 
             // verticalTilesToolStripMenuItem
             // 
             verticalTilesToolStripMenuItem.Name = "verticalTilesToolStripMenuItem";
-            verticalTilesToolStripMenuItem.Size = new Size(180, 22);
+            verticalTilesToolStripMenuItem.Size = new Size(156, 22);
             verticalTilesToolStripMenuItem.Text = "Vertical Tiles";
             verticalTilesToolStripMenuItem.Click += cascadeToolStripMenuItem_Click;
             // 
@@ -114,7 +114,7 @@
             // 
             customizeToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { changeWindowColorToolStripMenuItem });
             customizeToolStripMenuItem.Name = "customizeToolStripMenuItem";
-            customizeToolStripMenuItem.Size = new Size(180, 22);
+            customizeToolStripMenuItem.Size = new Size(130, 22);
             customizeToolStripMenuItem.Text = "Customize";
             // 
             // changeWindowColorToolStripMenuItem
@@ -127,14 +127,14 @@
             // newToolStripMenuItem
             // 
             newToolStripMenuItem.Name = "newToolStripMenuItem";
-            newToolStripMenuItem.Size = new Size(180, 22);
+            newToolStripMenuItem.Size = new Size(130, 22);
             newToolStripMenuItem.Text = "New";
             newToolStripMenuItem.Click += newToolStripMenuItem_Click;
             // 
             // closeToolStripMenuItem
             // 
             closeToolStripMenuItem.Name = "closeToolStripMenuItem";
-            closeToolStripMenuItem.Size = new Size(180, 22);
+            closeToolStripMenuItem.Size = new Size(130, 22);
             closeToolStripMenuItem.Text = "Close";
             closeToolStripMenuItem.Click += closeToolStripMenuItem_Click;
             // 
@@ -142,7 +142,7 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
+            ClientSize = new Size(1184, 761);
             Controls.Add(menuStrip1);
             IsMdiContainer = true;
             MainMenuStrip = menuStrip1;

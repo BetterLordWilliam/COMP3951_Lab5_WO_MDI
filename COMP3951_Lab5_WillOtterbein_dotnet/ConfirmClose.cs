@@ -10,7 +10,7 @@ using System.Windows.Forms;
 
 namespace COMP3951_Lab5_WillOtterbein_dotnet
 {
-    public partial class ConfirmClose: Form
+    public partial class ConfirmClose : Form
     {
         public ConfirmClose()
         {
@@ -20,6 +20,11 @@ namespace COMP3951_Lab5_WillOtterbein_dotnet
         public DialogResult getRestult()
         {
             return this.DialogResult;
+        }
+
+        private void ConfirmClose_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

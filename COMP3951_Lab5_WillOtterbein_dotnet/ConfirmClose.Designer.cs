@@ -74,7 +74,9 @@
             MaximizeBox = false;
             MinimizeBox = false;
             Name = "ConfirmClose";
+            StartPosition = FormStartPosition.CenterParent;
             Text = "ConfirmClose";
+            Load += ConfirmClose_Load;
             ResumeLayout(false);
             PerformLayout();
         }

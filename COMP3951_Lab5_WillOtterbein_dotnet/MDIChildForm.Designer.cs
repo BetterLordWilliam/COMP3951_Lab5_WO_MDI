@@ -30,7 +30,9 @@ namespace COMP3951_Lab5_WillOtterbein_dotnet
         private void InitializeComponent()
         {
             pictureBox1 = new PictureBox();
+            panel1 = new Panel();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
+            panel1.SuspendLayout();
             SuspendLayout();
             // 
             // pictureBox1
@@ -45,6 +47,18 @@ namespace COMP3951_Lab5_WillOtterbein_dotnet
             pictureBox1.MouseMove += ImageMouseMove;
             pictureBox1.MouseUp += ImageMouseUp;
             // 
+            // panel1
+            // 
+            panel1.AutoScroll = true;
+            panel1.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            panel1.Controls.Add(pictureBox1);
+            panel1.Dock = DockStyle.Fill;
+            panel1.Location = new Point(0, 0);
+            panel1.Name = "panel1";
+            panel1.Size = new Size(800, 450);
+            panel1.TabIndex = 1;
+            panel1.Paint += panel1_Paint;
+            // 
             // MDIChildForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -52,17 +66,19 @@ namespace COMP3951_Lab5_WillOtterbein_dotnet
             AutoSize = true;
             BackColor = SystemColors.ControlDark;
             ClientSize = new Size(800, 450);
-            Controls.Add(pictureBox1);
+            Controls.Add(panel1);
             Name = "MDIChildForm";
             RightToLeft = RightToLeft.No;
             Text = "Will MDI Child Form";
             Paint += MDIChildForm_Paint;
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
+            panel1.ResumeLayout(false);
             ResumeLayout(false);
         }
 
         #endregion
 
         private PictureBox pictureBox1;
+        private Panel panel1;
     }
 }

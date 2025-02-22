@@ -16,11 +16,14 @@ namespace COMP3951_Lab5_WillOtterbein_dotnet
         /// <param name="e"></param>
         private void newToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            MDIChildForm child = new MDIChildForm();
-
-            // Make the new form an MDI child of this form and show it
-            child.MdiParent = this;
-            child.Show();
+            // Show the add window dialog
+            AddWindow aw = new AddWindow();
+            if (aw.ShowDialog() == DialogResult.OK)
+            {
+                MDIChildForm child = new (aw.WidthInput, aw.HeightInput, aw.ColorInput);
+                child.MdiParent = this;
+                child.Show();
+            }
         }
 
         /// <summary>
