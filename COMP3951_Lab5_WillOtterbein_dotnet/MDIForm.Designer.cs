@@ -75,7 +75,7 @@
             // 
             // windowsToolStripMenuItem
             // 
-            windowsToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { arrangeToolStripMenuItem, newToolStripMenuItem, closeToolStripMenuItem });
+            windowsToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { newToolStripMenuItem, closeToolStripMenuItem, arrangeToolStripMenuItem });
             windowsToolStripMenuItem.Name = "windowsToolStripMenuItem";
             windowsToolStripMenuItem.Size = new Size(68, 20);
             windowsToolStripMenuItem.Text = "Windows";
@@ -84,7 +84,7 @@
             // 
             arrangeToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { cascadeToolStripMenuItem, horitonzalTilesToolStripMenuItem, verticalTilesToolStripMenuItem });
             arrangeToolStripMenuItem.Name = "arrangeToolStripMenuItem";
-            arrangeToolStripMenuItem.Size = new Size(180, 22);
+            arrangeToolStripMenuItem.Size = new Size(116, 22);
             arrangeToolStripMenuItem.Text = "Arrange";
             // 
             // cascadeToolStripMenuItem
@@ -111,14 +111,14 @@
             // newToolStripMenuItem
             // 
             newToolStripMenuItem.Name = "newToolStripMenuItem";
-            newToolStripMenuItem.Size = new Size(180, 22);
+            newToolStripMenuItem.Size = new Size(116, 22);
             newToolStripMenuItem.Text = "New";
             newToolStripMenuItem.Click += newToolStripMenuItem_Click;
             // 
             // closeToolStripMenuItem
             // 
             closeToolStripMenuItem.Name = "closeToolStripMenuItem";
-            closeToolStripMenuItem.Size = new Size(180, 22);
+            closeToolStripMenuItem.Size = new Size(116, 22);
             closeToolStripMenuItem.Text = "Close";
             closeToolStripMenuItem.Click += closeToolStripMenuItem_Click;
             // 

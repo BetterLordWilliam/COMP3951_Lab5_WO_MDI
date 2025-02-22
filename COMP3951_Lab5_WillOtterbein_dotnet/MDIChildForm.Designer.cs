@@ -33,14 +33,14 @@ namespace COMP3951_Lab5_WillOtterbein_dotnet
             pictureBox1 = new PictureBox();
             panel1 = new Panel();
             toolStrip1 = new ToolStrip();
-            widthView = new ToolStripLabel();
             heightView = new ToolStripLabel();
-            toolStripSeparator1 = new ToolStripSeparator();
+            widthView = new ToolStripLabel();
             pen1Selection = new ToolStripButton();
             pen1Show = new ToolStripButton();
             pen2Selection = new ToolStripButton();
             pen2Show = new ToolStripButton();
             toolStripSeparator2 = new ToolStripSeparator();
+            toolStripSeparator1 = new ToolStripSeparator();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             panel1.SuspendLayout();
             toolStrip1.SuspendLayout();
@@ -74,29 +74,26 @@ namespace COMP3951_Lab5_WillOtterbein_dotnet
             // toolStrip1
             // 
             toolStrip1.BackColor = SystemColors.Control;
-            toolStrip1.Items.AddRange(new ToolStripItem[] { widthView, heightView, toolStripSeparator1, pen1Selection, pen1Show, pen2Selection, pen2Show, toolStripSeparator2 });
+            toolStrip1.Items.AddRange(new ToolStripItem[] { heightView, toolStripSeparator1, widthView, pen1Selection, pen1Show, toolStripSeparator2, pen2Selection, pen2Show });
             toolStrip1.Location = new Point(0, 0);
             toolStrip1.Name = "toolStrip1";
             toolStrip1.Size = new Size(800, 25);
             toolStrip1.TabIndex = 1;
             toolStrip1.Text = "toolStrip1";
             // 
-            // widthView
-            // 
-            widthView.Name = "widthView";
-            widthView.Size = new Size(86, 22);
-            widthView.Text = "toolStripLabel1";
-            // 
             // heightView
             // 
+            heightView.Alignment = ToolStripItemAlignment.Right;
             heightView.Name = "heightView";
             heightView.Size = new Size(86, 22);
             heightView.Text = "toolStripLabel2";
             // 
-            // toolStripSeparator1
+            // widthView
             // 
-            toolStripSeparator1.Name = "toolStripSeparator1";
-            toolStripSeparator1.Size = new Size(6, 25);
+            widthView.Alignment = ToolStripItemAlignment.Right;
+            widthView.Name = "widthView";
+            widthView.Size = new Size(86, 22);
+            widthView.Text = "toolStripLabel1";
             // 
             // pen1Selection
             // 
@@ -145,6 +142,12 @@ namespace COMP3951_Lab5_WillOtterbein_dotnet
             toolStripSeparator2.Name = "toolStripSeparator2";
             toolStripSeparator2.Size = new Size(6, 25);
             // 
+            // toolStripSeparator1
+            // 
+            toolStripSeparator1.Alignment = ToolStripItemAlignment.Right;
+            toolStripSeparator1.Name = "toolStripSeparator1";
+            toolStripSeparator1.Size = new Size(6, 25);
+            // 
             // MDIChildForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -172,11 +175,11 @@ namespace COMP3951_Lab5_WillOtterbein_dotnet
         private ToolStrip toolStrip1;
         private ToolStripLabel widthView;
         private ToolStripLabel heightView;
-        private ToolStripSeparator toolStripSeparator1;
         private ToolStripSeparator toolStripSeparator2;
         private ToolStripButton pen1Selection;
         private ToolStripButton pen2Selection;
         private ToolStripButton pen1Show;
         private ToolStripButton pen2Show;
+        private ToolStripSeparator toolStripSeparator1;
     }
 }
