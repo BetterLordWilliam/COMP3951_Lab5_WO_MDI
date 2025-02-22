@@ -36,13 +36,10 @@ namespace COMP3951_Lab5_WillOtterbein_dotnet
             widthView = new ToolStripLabel();
             heightView = new ToolStripLabel();
             toolStripSeparator1 = new ToolStripSeparator();
-            toolStripLabel1 = new ToolStripLabel();
             pen1Selection = new ToolStripButton();
-            toolStripButton1 = new ToolStripButton();
-            toolStripSeparator3 = new ToolStripSeparator();
-            toolStripLabel2 = new ToolStripLabel();
+            pen1Show = new ToolStripButton();
             pen2Selection = new ToolStripButton();
-            toolStripButton2 = new ToolStripButton();
+            pen2Show = new ToolStripButton();
             toolStripSeparator2 = new ToolStripSeparator();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             panel1.SuspendLayout();
@@ -77,7 +74,7 @@ namespace COMP3951_Lab5_WillOtterbein_dotnet
             // toolStrip1
             // 
             toolStrip1.BackColor = SystemColors.Control;
-            toolStrip1.Items.AddRange(new ToolStripItem[] { widthView, heightView, toolStripSeparator1, toolStripLabel1, pen1Selection, toolStripButton1, toolStripSeparator3, toolStripLabel2, pen2Selection, toolStripButton2, toolStripSeparator2 });
+            toolStrip1.Items.AddRange(new ToolStripItem[] { widthView, heightView, toolStripSeparator1, pen1Selection, pen1Show, pen2Selection, pen2Show, toolStripSeparator2 });
             toolStrip1.Location = new Point(0, 0);
             toolStrip1.Name = "toolStrip1";
             toolStrip1.Size = new Size(800, 25);
@@ -101,60 +98,47 @@ namespace COMP3951_Lab5_WillOtterbein_dotnet
             toolStripSeparator1.Name = "toolStripSeparator1";
             toolStripSeparator1.Size = new Size(6, 25);
             // 
-            // toolStripLabel1
-            // 
-            toolStripLabel1.Name = "toolStripLabel1";
-            toolStripLabel1.Size = new Size(36, 22);
-            toolStripLabel1.Text = "Pen 1";
-            // 
             // pen1Selection
             // 
-            pen1Selection.BackColor = SystemColors.ButtonShadow;
-            pen1Selection.DisplayStyle = ToolStripItemDisplayStyle.Text;
+            pen1Selection.AutoSize = false;
+            pen1Selection.BackColor = SystemColors.Control;
+            pen1Selection.DisplayStyle = ToolStripItemDisplayStyle.Image;
             pen1Selection.Image = (Image)resources.GetObject("pen1Selection.Image");
             pen1Selection.ImageTransparentColor = Color.Magenta;
             pen1Selection.Name = "pen1Selection";
-            pen1Selection.Size = new Size(23, 22);
+            pen1Selection.Size = new Size(22, 22);
+            pen1Selection.Text = "Pen 1";
             pen1Selection.Click += pen1Selection_Click;
             // 
-            // toolStripButton1
+            // pen1Show
             // 
-            toolStripButton1.DisplayStyle = ToolStripItemDisplayStyle.Image;
-            toolStripButton1.Image = (Image)resources.GetObject("toolStripButton1.Image");
-            toolStripButton1.ImageTransparentColor = Color.Magenta;
-            toolStripButton1.Name = "toolStripButton1";
-            toolStripButton1.Size = new Size(23, 22);
-            toolStripButton1.Text = "toolStripButton1";
-            // 
-            // toolStripSeparator3
-            // 
-            toolStripSeparator3.Name = "toolStripSeparator3";
-            toolStripSeparator3.Size = new Size(6, 25);
-            // 
-            // toolStripLabel2
-            // 
-            toolStripLabel2.Name = "toolStripLabel2";
-            toolStripLabel2.Size = new Size(36, 22);
-            toolStripLabel2.Text = "Pen 2";
+            pen1Show.DisplayStyle = ToolStripItemDisplayStyle.None;
+            pen1Show.Enabled = false;
+            pen1Show.Image = (Image)resources.GetObject("pen1Show.Image");
+            pen1Show.ImageTransparentColor = Color.Magenta;
+            pen1Show.Name = "pen1Show";
+            pen1Show.Size = new Size(23, 22);
+            pen1Show.Text = "toolStripButton1";
             // 
             // pen2Selection
             // 
-            pen2Selection.BackColor = SystemColors.ButtonShadow;
-            pen2Selection.DisplayStyle = ToolStripItemDisplayStyle.Text;
+            pen2Selection.DisplayStyle = ToolStripItemDisplayStyle.Image;
             pen2Selection.Image = (Image)resources.GetObject("pen2Selection.Image");
             pen2Selection.ImageTransparentColor = Color.Magenta;
             pen2Selection.Name = "pen2Selection";
             pen2Selection.Size = new Size(23, 22);
+            pen2Selection.Text = "Pen 2";
             pen2Selection.Click += pen2Selection_Click;
             // 
-            // toolStripButton2
+            // pen2Show
             // 
-            toolStripButton2.DisplayStyle = ToolStripItemDisplayStyle.Image;
-            toolStripButton2.Image = (Image)resources.GetObject("toolStripButton2.Image");
-            toolStripButton2.ImageTransparentColor = Color.Magenta;
-            toolStripButton2.Name = "toolStripButton2";
-            toolStripButton2.Size = new Size(23, 22);
-            toolStripButton2.Text = "toolStripButton2";
+            pen2Show.DisplayStyle = ToolStripItemDisplayStyle.None;
+            pen2Show.Enabled = false;
+            pen2Show.Image = (Image)resources.GetObject("pen2Show.Image");
+            pen2Show.ImageTransparentColor = Color.Magenta;
+            pen2Show.Name = "pen2Show";
+            pen2Show.Size = new Size(23, 22);
+            pen2Show.Text = "toolStripButton1";
             // 
             // toolStripSeparator2
             // 
@@ -189,13 +173,10 @@ namespace COMP3951_Lab5_WillOtterbein_dotnet
         private ToolStripLabel widthView;
         private ToolStripLabel heightView;
         private ToolStripSeparator toolStripSeparator1;
+        private ToolStripSeparator toolStripSeparator2;
         private ToolStripButton pen1Selection;
         private ToolStripButton pen2Selection;
-        private ToolStripLabel toolStripLabel1;
-        private ToolStripLabel toolStripLabel2;
-        private ToolStripSeparator toolStripSeparator2;
-        private ToolStripButton toolStripButton1;
-        private ToolStripSeparator toolStripSeparator3;
-        private ToolStripButton toolStripButton2;
+        private ToolStripButton pen1Show;
+        private ToolStripButton pen2Show;
     }
 }

@@ -23,8 +23,27 @@ namespace COMP3951_Lab5_WillOtterbein_dotnet
         readonly Color DEFAULT_C2 = Color.FromArgb(255, 255, 255, 255);
 
         // Settable versions of the above
-        float? b1 { get; set; } = null;
-        float? b2 { get; set; } = null;
+        float _b1;
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+        public float B1
+        {
+            get => _b1;
+            set
+            {
+                _b1 = value;
+            }
+        }
+        float _b2;
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+        public float B2
+        {
+            get => _b2;
+            set
+            {
+                _b2 = value;
+                //this.pen2
+            }
+        }
 
         // Pen 1 color
         Color _c1;
@@ -35,8 +54,8 @@ namespace COMP3951_Lab5_WillOtterbein_dotnet
             set
             {
                 // Updating the UI screen parts that reflect the current pen1 color
-                _c1 = (Color)value;
-                this.pen1Selection.BackColor = (Color)value;
+                _c1 = value;
+                this.pen1Show.BackColor = value;
             }
         }
         // Pen 2 Color
@@ -48,8 +67,8 @@ namespace COMP3951_Lab5_WillOtterbein_dotnet
             set
             {
                 // Updating the UI screen parts that reflect the current pen2 color
-                _c2 = (Color)value;
-                this.pen2Selection.BackColor = (Color)value;
+                _c2 = value;
+                this.pen2Show.BackColor = value;
             }
         }
 
@@ -97,7 +116,9 @@ namespace COMP3951_Lab5_WillOtterbein_dotnet
             BmWidth = width ?? pictureBox1.Width;
             BmHeight = height ?? pictureBox1.Height;
             C1 = DEFAULT_C1;
-            C2 = DEFAULT_C2;
+            C2 = background ?? DEFAULT_C2;
+            B1 = DEFAULT_B1;
+            B2 = DEFAULT_B2;
             ImageBitmap = new Bitmap(BmWidth, BmHeight);
 
             // Size the picture box
@@ -108,11 +129,10 @@ namespace COMP3951_Lab5_WillOtterbein_dotnet
             // Blank Image, white background bitmap, smooth drawing mode
             g = Graphics.FromImage(ImageBitmap);
             g.SmoothingMode = SmoothingMode.HighQuality;
-            g.Clear(background ?? DEFAULT_C2);
-
+            g.Clear(C2);
 
             // Define the default brushes
-            DrawingPen = new(C1, b1 ?? DEFAULT_B1) { EndCap = LineCap.Round };
+            DrawingPen = new(C1, B1) { EndCap = LineCap.Round };
         }
 
         /// <summary>
@@ -128,10 +148,10 @@ namespace COMP3951_Lab5_WillOtterbein_dotnet
             switch (e.Button)
             {
                 case MouseButtons.Left:
-                    DrawingPen = new(C1, b1 ?? DEFAULT_B1) { EndCap = LineCap.Round };
+                    DrawingPen = new(C1, B1) { EndCap = LineCap.Round };
                     break;
                 case MouseButtons.Right:
-                    DrawingPen = new(C2, b2 ?? DEFAULT_B2) { EndCap = LineCap.Round };
+                    DrawingPen = new(C2, B2) { EndCap = LineCap.Round };
                     break;
             }
 
@@ -181,14 +201,38 @@ namespace COMP3951_Lab5_WillOtterbein_dotnet
 
         }
 
+        /// <summary>
+        /// Pen 1 selection menu, configure color and thickness.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void pen1Selection_Click(object sender, EventArgs e)
         {
-
+            using (PenMenu pm = new (C1, B1))
+            {
+                if (pm.ShowDialog() == DialogResult.OK)
+                {
+                    C1 = pm.ColorInput;
+                    B1 = pm.WidthInput;
+                }
+            }
         }
 
+        /// <summary>
+        /// Pen 2 selection menu, configure color and thickness.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void pen2Selection_Click(object sender, EventArgs e)
         {
-
+            using (PenMenu pm = new(C2,B2))
+            {
+                if (pm.ShowDialog() == DialogResult.OK)
+                {
+                    C2 = pm.ColorInput;
+                    B2 = pm.WidthInput;
+                }
+            }
         }
 
         /// <summary>
