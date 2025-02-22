@@ -6,6 +6,7 @@ using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Drawing.Imaging;
 using System.Linq;
+using System.Reflection.Metadata.Ecma335;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -24,8 +25,60 @@ namespace COMP3951_Lab5_WillOtterbein_dotnet
         // Settable versions of the above
         float? b1 { get; set; } = null;
         float? b2 { get; set; } = null;
-        Color? c1 { get; set; } = null;
-        Color? c2 { get; set; } = null;
+
+        // Pen 1 color
+        Color _c1;
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+        public Color C1
+        {
+            get => _c1;
+            set
+            {
+                // Updating the UI screen parts that reflect the current pen1 color
+                _c1 = (Color)value;
+                this.pen1Selection.BackColor = (Color)value;
+            }
+        }
+        // Pen 2 Color
+        Color _c2;
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+        public Color C2
+        {
+            get => _c2;
+            set
+            {
+                // Updating the UI screen parts that reflect the current pen2 color
+                _c2 = (Color)value;
+                this.pen2Selection.BackColor = (Color)value;
+            }
+        }
+
+        // Width of the bit map
+        int _bmwidth;
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+        public int BmWidth
+        {
+            get => _bmwidth;
+            set
+            {
+                // Updating the UI Screen parts which indicate the canvas size
+                _bmwidth = value;
+                this.widthView.Text = $"Width: {value}";
+            }
+        }
+        // Height of the bit map
+        int _bmheight;
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+        public int BmHeight
+        {
+            get => _bmheight;
+            set
+            {
+                // Updating the UI screen parts whcih indicate canvas size
+                _bmheight = value;
+                this.heightView.Text = $"Height: {value}";
+            }
+        }
 
         // Graphics objects
         Pen DrawingPen { get; set; }
@@ -40,11 +93,13 @@ namespace COMP3951_Lab5_WillOtterbein_dotnet
         {
             InitializeComponent();
 
-            // Initialize bitmap
-            ImageBitmap = new Bitmap(
-                width ?? pictureBox1.Width,
-                height ?? pictureBox1.Height
-            );
+            // BmWidth
+            BmWidth = width ?? pictureBox1.Width;
+            BmHeight = height ?? pictureBox1.Height;
+            C1 = DEFAULT_C1;
+            C2 = DEFAULT_C2;
+            ImageBitmap = new Bitmap(BmWidth, BmHeight);
+
             // Size the picture box
             pictureBox1.Image = ImageBitmap;
             pictureBox1.Size = ImageBitmap.Size;
@@ -57,7 +112,7 @@ namespace COMP3951_Lab5_WillOtterbein_dotnet
 
 
             // Define the default brushes
-            DrawingPen = new(DEFAULT_C2, b1 ?? DEFAULT_B1) { EndCap = LineCap.Round };
+            DrawingPen = new(C1, b1 ?? DEFAULT_B1) { EndCap = LineCap.Round };
         }
 
         /// <summary>
@@ -73,10 +128,10 @@ namespace COMP3951_Lab5_WillOtterbein_dotnet
             switch (e.Button)
             {
                 case MouseButtons.Left:
-                    DrawingPen = new(DEFAULT_C1, b1 ?? DEFAULT_B1) { EndCap = LineCap.Round };
+                    DrawingPen = new(C1, b1 ?? DEFAULT_B1) { EndCap = LineCap.Round };
                     break;
                 case MouseButtons.Right:
-                    DrawingPen = new(DEFAULT_C2, b2 ?? DEFAULT_B2) { EndCap = LineCap.Round };
+                    DrawingPen = new(C2, b2 ?? DEFAULT_B2) { EndCap = LineCap.Round };
                     break;
             }
 
@@ -122,6 +177,16 @@ namespace COMP3951_Lab5_WillOtterbein_dotnet
         }
 
         private void panel1_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void pen1Selection_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void pen2Selection_Click(object sender, EventArgs e)
         {
 
         }
