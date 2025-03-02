@@ -4,11 +4,15 @@ namespace COMP3951_Lab5_WillOtterbein_dotnet
 {
     partial class MDIChildForm : Form
     {
-        // Default thickness and colors
-        const float DEFAULT_B1 = 5f;
-        const float DEFAULT_B2 = 20f;
+        // Defaults
+        readonly float DEFAULT_B1 = 5f;
+        readonly float DEFAULT_B2 = 20f;
         readonly Color DEFAULT_C1 = Color.FromArgb(255, 0, 0, 0);
         readonly Color DEFAULT_C2 = Color.FromArgb(255, 255, 255, 255);
+
+        // Drawing logic stuff
+        Point? PreviousPoint = null;
+        bool Painting = false;
 
         // Settable versions of the above
         float _b1;
@@ -86,16 +90,10 @@ namespace COMP3951_Lab5_WillOtterbein_dotnet
             }
         }
 
-        // Public accessor for the bitmap image
         public Image? PictureBoxImage { get => pictureBox1.Image; }
-
-        // Graphics objects
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+        public FileStream? ImageFileStream { get; set; }
         Pen DrawingPen { get; set; }
         Graphics g;
-        Image ImageBitmap;
-
-        // Drawing logic stuff
-        Point? PreviousPoint = null;
-        bool Painting = false;
     }
 }

@@ -6,13 +6,17 @@ namespace COMP3951_Lab5_WillOtterbein_dotnet
 
     public partial class MDIChildForm : Form
     {
+        /// <summary>
+        /// Constructor for the MDIChildForm class, build drawable surface for the supplied image document, or create new bitmap.
+        /// </summary>
+        /// <param name="width"></param>
+        /// <param name="height"></param>
+        /// <param name="background"></param>
+        /// <param name="title"></param>
+        /// <param name="imageFile"></param>
         public MDIChildForm(int? width = null, int? height = null, Color? background = null, string? title = null, Image? image = null)
         {
             InitializeComponent();
-
-            Text = title ?? "New image";
-            BmWidth = width ?? pictureBox1.Width;
-            BmHeight = height ?? pictureBox1.Height;
 
             // Define the default colors
             C1 = DEFAULT_C1;
@@ -20,21 +24,22 @@ namespace COMP3951_Lab5_WillOtterbein_dotnet
             B1 = DEFAULT_B1;
             B2 = DEFAULT_B2;
 
+            // Configure window properties
             // Create a new image if the supplied is null
-            // Default image it creates is a bitmap
-            ImageBitmap = image ?? new Bitmap(BmWidth, BmHeight);
-            pictureBox1.Image = ImageBitmap;
-            pictureBox1.Size = ImageBitmap.Size;
-            panel1.AutoScrollMinSize = ImageBitmap.Size;
-
-            // Configure the graphics object
-            // Draw background if new image
-            g = Graphics.FromImage(ImageBitmap);
-            g.SmoothingMode = SmoothingMode.HighQuality;
-            if (image == null) g.Clear(C2);
+            Text = title ?? "New image";
+            BmWidth = width ?? pictureBox1.Width;
+            BmHeight = height ?? pictureBox1.Height;
 
             // Define the default brushes
             DrawingPen = new(C1, B1) { EndCap = LineCap.Round };
+
+            // Load image / create new empty bitmap image
+            pictureBox1.Image = image ?? new Bitmap(BmWidth, BmHeight);
+            pictureBox1.Size = pictureBox1.Image.Size;
+            panel1.AutoScrollMinSize = pictureBox1.Image.Size;
+            g = Graphics.FromImage(pictureBox1.Image);
+            g.SmoothingMode = SmoothingMode.HighQuality;
+            if (image == null) g.Clear(C2);
         }
 
         /// <summary>
@@ -129,11 +134,17 @@ namespace COMP3951_Lab5_WillOtterbein_dotnet
         }
 
         /// <summary>
-        /// Finalizer for the pane, dispose graphics resources used.
+        /// On form close event, dispose of the resources used by the form.
         /// </summary>
-        ~MDIChildForm()
+        /// <param name="e"></param>
+        protected override void OnFormClosing(FormClosingEventArgs e)
         {
-            ImageBitmap.Dispose();
+            base.OnFormClosing(e);
+
+            ImageFileStream?.Close();
+            ImageFileStream?.Dispose();
+            pictureBox1?.Image?.Dispose();
+            
             g.Dispose();
         }
     }
