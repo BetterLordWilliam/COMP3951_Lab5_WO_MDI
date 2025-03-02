@@ -1,4 +1,5 @@
 using System.Linq.Expressions;
+using System.ComponentModel;
 
 namespace COMP3951_Lab5_WillOtterbein_dotnet
 {
@@ -20,7 +21,7 @@ namespace COMP3951_Lab5_WillOtterbein_dotnet
             AddWindow aw = new AddWindow();
             if (aw.ShowDialog() == DialogResult.OK)
             {
-                MDIChildForm child = new (aw.WidthInput, aw.HeightInput, aw.ColorInput);
+                MDIChildForm child = new(aw.WidthInput, aw.HeightInput, aw.ColorInput);
                 child.MdiParent = this;
                 child.Show();
             }
@@ -46,6 +47,42 @@ namespace COMP3951_Lab5_WillOtterbein_dotnet
         }
 
         /// <summary>
+        /// Enable/disable the savefile depending on if there are any active children.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void MDIForm_MdiChildActivate(object sender, EventArgs e)
+        {
+            if (this.ActiveMdiChild != null)
+            {
+                this.saveFileToolStripMenuItem.Enabled = true;
+            }
+            else
+            {
+                this.saveFileToolStripMenuItem.Enabled = false;
+            }
+        }
+
+        /// <summary>
+        /// Map save/load file helper methods.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void fileToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            
+            switch (((ToolStripMenuItem)sender).Name)
+            {
+                case "openFileToolStripMenuItem":
+                    openFileHelperMethod();
+                    return;
+                case "saveFileToolStripMenuItem":
+                    saveFileHelperMethod();
+                    return;
+            }
+        }
+
+        /// <summary>
         /// Handle selection of a menu arrangement.
         /// </summary>
         /// <param name="sender"></param>
@@ -67,12 +104,6 @@ namespace COMP3951_Lab5_WillOtterbein_dotnet
                     this.LayoutMdi(System.Windows.Forms.MdiLayout.ArrangeIcons);
                     return;
             }
-
-        }
-
-        private void changeWindowColorToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-
         }
     }
 }

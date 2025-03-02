@@ -34,13 +34,15 @@ namespace COMP3951_Lab5_WillOtterbein_dotnet
             panel1 = new Panel();
             toolStrip1 = new ToolStrip();
             heightView = new ToolStripLabel();
+            toolStripSeparator1 = new ToolStripSeparator();
             widthView = new ToolStripLabel();
             pen1Selection = new ToolStripButton();
             pen1Show = new ToolStripButton();
+            toolStripSeparator2 = new ToolStripSeparator();
             pen2Selection = new ToolStripButton();
             pen2Show = new ToolStripButton();
-            toolStripSeparator2 = new ToolStripSeparator();
-            toolStripSeparator1 = new ToolStripSeparator();
+            nameView = new ToolStripLabel();
+            toolStripLabel2 = new ToolStripSeparator();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             panel1.SuspendLayout();
             toolStrip1.SuspendLayout();
@@ -69,12 +71,11 @@ namespace COMP3951_Lab5_WillOtterbein_dotnet
             panel1.Name = "panel1";
             panel1.Size = new Size(800, 450);
             panel1.TabIndex = 1;
-            panel1.Paint += panel1_Paint;
             // 
             // toolStrip1
             // 
             toolStrip1.BackColor = SystemColors.Control;
-            toolStrip1.Items.AddRange(new ToolStripItem[] { heightView, toolStripSeparator1, widthView, pen1Selection, pen1Show, toolStripSeparator2, pen2Selection, pen2Show });
+            toolStrip1.Items.AddRange(new ToolStripItem[] { heightView, toolStripSeparator1, widthView, toolStripLabel2, pen1Selection, pen1Show, toolStripSeparator2, pen2Selection, pen2Show, nameView });
             toolStrip1.Location = new Point(0, 0);
             toolStrip1.Name = "toolStrip1";
             toolStrip1.Size = new Size(800, 25);
@@ -87,6 +88,12 @@ namespace COMP3951_Lab5_WillOtterbein_dotnet
             heightView.Name = "heightView";
             heightView.Size = new Size(86, 22);
             heightView.Text = "toolStripLabel2";
+            // 
+            // toolStripSeparator1
+            // 
+            toolStripSeparator1.Alignment = ToolStripItemAlignment.Right;
+            toolStripSeparator1.Name = "toolStripSeparator1";
+            toolStripSeparator1.Size = new Size(6, 25);
             // 
             // widthView
             // 
@@ -117,6 +124,11 @@ namespace COMP3951_Lab5_WillOtterbein_dotnet
             pen1Show.Size = new Size(23, 22);
             pen1Show.Text = "toolStripButton1";
             // 
+            // toolStripSeparator2
+            // 
+            toolStripSeparator2.Name = "toolStripSeparator2";
+            toolStripSeparator2.Size = new Size(6, 25);
+            // 
             // pen2Selection
             // 
             pen2Selection.DisplayStyle = ToolStripItemDisplayStyle.Image;
@@ -137,16 +149,17 @@ namespace COMP3951_Lab5_WillOtterbein_dotnet
             pen2Show.Size = new Size(23, 22);
             pen2Show.Text = "toolStripButton1";
             // 
-            // toolStripSeparator2
+            // nameView
             // 
-            toolStripSeparator2.Name = "toolStripSeparator2";
-            toolStripSeparator2.Size = new Size(6, 25);
+            nameView.Alignment = ToolStripItemAlignment.Right;
+            nameView.Name = "nameView";
+            nameView.Size = new Size(0, 22);
             // 
-            // toolStripSeparator1
+            // toolStripLabel2
             // 
-            toolStripSeparator1.Alignment = ToolStripItemAlignment.Right;
-            toolStripSeparator1.Name = "toolStripSeparator1";
-            toolStripSeparator1.Size = new Size(6, 25);
+            toolStripLabel2.Alignment = ToolStripItemAlignment.Right;
+            toolStripLabel2.Name = "toolStripLabel2";
+            toolStripLabel2.Size = new Size(6, 25);
             // 
             // MDIChildForm
             // 
@@ -159,7 +172,6 @@ namespace COMP3951_Lab5_WillOtterbein_dotnet
             Name = "MDIChildForm";
             RightToLeft = RightToLeft.No;
             Text = "Will MDI Child Form";
-            Paint += MDIChildForm_Paint;
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
@@ -181,5 +193,7 @@ namespace COMP3951_Lab5_WillOtterbein_dotnet
         private ToolStripButton pen1Show;
         private ToolStripButton pen2Show;
         private ToolStripSeparator toolStripSeparator1;
+        private ToolStripSeparator toolStripLabel2;
+        private ToolStripLabel nameView;
     }
 }

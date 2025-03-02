@@ -33,12 +33,12 @@
             openFileToolStripMenuItem = new ToolStripMenuItem();
             saveFileToolStripMenuItem = new ToolStripMenuItem();
             windowsToolStripMenuItem = new ToolStripMenuItem();
+            newToolStripMenuItem = new ToolStripMenuItem();
+            closeToolStripMenuItem = new ToolStripMenuItem();
             arrangeToolStripMenuItem = new ToolStripMenuItem();
             cascadeToolStripMenuItem = new ToolStripMenuItem();
             horitonzalTilesToolStripMenuItem = new ToolStripMenuItem();
             verticalTilesToolStripMenuItem = new ToolStripMenuItem();
-            newToolStripMenuItem = new ToolStripMenuItem();
-            closeToolStripMenuItem = new ToolStripMenuItem();
             menuStrip1.SuspendLayout();
             SuspendLayout();
             // 
@@ -63,15 +63,17 @@
             // openFileToolStripMenuItem
             // 
             openFileToolStripMenuItem.Name = "openFileToolStripMenuItem";
-            openFileToolStripMenuItem.Size = new Size(121, 22);
+            openFileToolStripMenuItem.Size = new Size(180, 22);
             openFileToolStripMenuItem.Text = "OpenFile";
+            openFileToolStripMenuItem.Click += fileToolStripMenuItem_Click;
             // 
             // saveFileToolStripMenuItem
             // 
             saveFileToolStripMenuItem.Enabled = false;
             saveFileToolStripMenuItem.Name = "saveFileToolStripMenuItem";
-            saveFileToolStripMenuItem.Size = new Size(121, 22);
+            saveFileToolStripMenuItem.Size = new Size(180, 22);
             saveFileToolStripMenuItem.Text = "SaveFile";
+            saveFileToolStripMenuItem.Click += fileToolStripMenuItem_Click;
             // 
             // windowsToolStripMenuItem
             // 
@@ -79,34 +81,6 @@
             windowsToolStripMenuItem.Name = "windowsToolStripMenuItem";
             windowsToolStripMenuItem.Size = new Size(68, 20);
             windowsToolStripMenuItem.Text = "Windows";
-            // 
-            // arrangeToolStripMenuItem
-            // 
-            arrangeToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { cascadeToolStripMenuItem, horitonzalTilesToolStripMenuItem, verticalTilesToolStripMenuItem });
-            arrangeToolStripMenuItem.Name = "arrangeToolStripMenuItem";
-            arrangeToolStripMenuItem.Size = new Size(116, 22);
-            arrangeToolStripMenuItem.Text = "Arrange";
-            // 
-            // cascadeToolStripMenuItem
-            // 
-            cascadeToolStripMenuItem.Name = "cascadeToolStripMenuItem";
-            cascadeToolStripMenuItem.Size = new Size(180, 22);
-            cascadeToolStripMenuItem.Text = "Cascade";
-            cascadeToolStripMenuItem.Click += cascadeToolStripMenuItem_Click;
-            // 
-            // horitonzalTilesToolStripMenuItem
-            // 
-            horitonzalTilesToolStripMenuItem.Name = "horitonzalTilesToolStripMenuItem";
-            horitonzalTilesToolStripMenuItem.Size = new Size(180, 22);
-            horitonzalTilesToolStripMenuItem.Text = "Horitonzal Tiles";
-            horitonzalTilesToolStripMenuItem.Click += cascadeToolStripMenuItem_Click;
-            // 
-            // verticalTilesToolStripMenuItem
-            // 
-            verticalTilesToolStripMenuItem.Name = "verticalTilesToolStripMenuItem";
-            verticalTilesToolStripMenuItem.Size = new Size(180, 22);
-            verticalTilesToolStripMenuItem.Text = "Vertical Tiles";
-            verticalTilesToolStripMenuItem.Click += cascadeToolStripMenuItem_Click;
             // 
             // newToolStripMenuItem
             // 
@@ -122,6 +96,34 @@
             closeToolStripMenuItem.Text = "Close";
             closeToolStripMenuItem.Click += closeToolStripMenuItem_Click;
             // 
+            // arrangeToolStripMenuItem
+            // 
+            arrangeToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { cascadeToolStripMenuItem, horitonzalTilesToolStripMenuItem, verticalTilesToolStripMenuItem });
+            arrangeToolStripMenuItem.Name = "arrangeToolStripMenuItem";
+            arrangeToolStripMenuItem.Size = new Size(116, 22);
+            arrangeToolStripMenuItem.Text = "Arrange";
+            // 
+            // cascadeToolStripMenuItem
+            // 
+            cascadeToolStripMenuItem.Name = "cascadeToolStripMenuItem";
+            cascadeToolStripMenuItem.Size = new Size(156, 22);
+            cascadeToolStripMenuItem.Text = "Cascade";
+            cascadeToolStripMenuItem.Click += cascadeToolStripMenuItem_Click;
+            // 
+            // horitonzalTilesToolStripMenuItem
+            // 
+            horitonzalTilesToolStripMenuItem.Name = "horitonzalTilesToolStripMenuItem";
+            horitonzalTilesToolStripMenuItem.Size = new Size(156, 22);
+            horitonzalTilesToolStripMenuItem.Text = "Horitonzal Tiles";
+            horitonzalTilesToolStripMenuItem.Click += cascadeToolStripMenuItem_Click;
+            // 
+            // verticalTilesToolStripMenuItem
+            // 
+            verticalTilesToolStripMenuItem.Name = "verticalTilesToolStripMenuItem";
+            verticalTilesToolStripMenuItem.Size = new Size(156, 22);
+            verticalTilesToolStripMenuItem.Text = "Vertical Tiles";
+            verticalTilesToolStripMenuItem.Click += cascadeToolStripMenuItem_Click;
+            // 
             // MDIForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -132,6 +134,7 @@
             MainMenuStrip = menuStrip1;
             Name = "MDIForm";
             Text = "Will MDI Application";
+            MdiChildActivate += MDIForm_MdiChildActivate;
             menuStrip1.ResumeLayout(false);
             menuStrip1.PerformLayout();
             ResumeLayout(false);
