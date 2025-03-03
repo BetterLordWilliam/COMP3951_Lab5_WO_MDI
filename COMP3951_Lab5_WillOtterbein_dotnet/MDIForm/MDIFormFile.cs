@@ -1,7 +1,16 @@
-﻿using System.Security;
+﻿using System.Data;
+using System.Security;
+using System.Drawing.Imaging;
 
+///
+/// Will Otterbein
+/// March 2 2025
+///
 namespace COMP3951_Lab5_WillOtterbein_dotnet
 {
+    /// <summary>
+    /// Enum for file extensions
+    /// </summary>
     enum ImageFile
     {
         JPEG = 1,
@@ -11,13 +20,23 @@ namespace COMP3951_Lab5_WillOtterbein_dotnet
 
     partial class MDIForm : Form
     {
+        private delegate void setMdiLayout();
+        private delegate void fileSystemOperation();
+        private readonly Dictionary<int, ImageFormat> fileExtensionOperationMap = new()
+        {
+            { ((int)ImageFile.JPEG), ImageFormat.Jpeg },
+            { ((int)ImageFile.BMP), ImageFormat.Bmp },
+            { ((int)ImageFile.PNG), ImageFormat.Png }
+        };
+        private readonly Dictionary<string, setMdiLayout> mdiLayoutMap;
+        private readonly Dictionary<string, fileSystemOperation> fileSystemOpMap;
+
         /// <summary>
         /// Helper method for writing images to the disk for the MDI application.
         /// </summary>
         private void saveFileHelperMethod()
         {
             MDIChildForm? mdiChildForm = (MDIChildForm)ActiveMdiChild;
-            FileStream? imageFileStream = mdiChildForm?.ImageFileStream;
             Image? i = mdiChildForm?.PictureBoxImage;
 
             // Check if the child window is null / image is null before
@@ -39,21 +58,9 @@ namespace COMP3951_Lab5_WillOtterbein_dotnet
             // Save a file to the disk
             try
             {
-                // Create a new file stream if the document currently does not have one
                 using FileStream fs = new(s.FileName, FileMode.OpenOrCreate, FileAccess.Write, FileShare.Read);
                 {
-                    switch (s.FilterIndex)
-                    {
-                        case ((int)ImageFile.JPEG):
-                            i.Save(fs, System.Drawing.Imaging.ImageFormat.Jpeg);
-                            break;
-                        case ((int)ImageFile.BMP):
-                            i.Save(fs, System.Drawing.Imaging.ImageFormat.Bmp);
-                            break;
-                        case ((int)ImageFile.PNG):
-                            i.Save(fs, System.Drawing.Imaging.ImageFormat.Png);
-                            break;
-                    }
+                    i.Save(fs, fileExtensionOperationMap[s.FilterIndex]);
                     mdiChildForm.Text = s.FileName;
                 }
             }
@@ -95,14 +102,6 @@ namespace COMP3951_Lab5_WillOtterbein_dotnet
             catch (FileNotFoundException)
             {
                 MessageBox.Show("Could not find the specified file.");
-            }
-            catch (ArgumentException)
-            {
-                MessageBox.Show("Document creation failed, invalid arguments supplied.\n\nFile may be null/empty.");
-            }
-            catch (OutOfMemoryException)
-            {
-                MessageBox.Show("Document creation failed, out of memory.");
             }
             catch (IOException e)
             {

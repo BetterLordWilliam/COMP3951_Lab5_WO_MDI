@@ -1,9 +1,12 @@
 ﻿using System.ComponentModel;
 using System.Drawing.Drawing2D;
 
+///
+/// Will Otterbein
+/// March 2 2025
+///
 namespace COMP3951_Lab5_WillOtterbein_dotnet
 {
-
     public partial class MDIChildForm : Form
     {
         /// <summary>
@@ -18,25 +21,30 @@ namespace COMP3951_Lab5_WillOtterbein_dotnet
         {
             InitializeComponent();
 
-            // Define the default colors
+            // Define the default stuff
             C1 = DEFAULT_C1;
             C2 = background ?? DEFAULT_C2;
             B1 = DEFAULT_B1;
             B2 = DEFAULT_B2;
+            DrawingPen = new(C1, B1) { EndCap = LineCap.Round };
+
+            buttonToBrush = new()
+            {
+                { MouseButtons.Left, () => new(C1, B1) { EndCap = LineCap.Round } },
+                { MouseButtons.Right, () => new(C2, B2) { EndCap = LineCap.Round } }
+            };
 
             // Configure window properties
-            // Create a new image if the supplied is null
             Text = title ?? "New image";
             BmWidth = width ?? pictureBox1.Width;
             BmHeight = height ?? pictureBox1.Height;
-
-            // Define the default brushes
-            DrawingPen = new(C1, B1) { EndCap = LineCap.Round };
 
             // Load image / create new empty bitmap image
             pictureBox1.Image = image ?? new Bitmap(BmWidth, BmHeight);
             pictureBox1.Size = pictureBox1.Image.Size;
             panel1.AutoScrollMinSize = pictureBox1.Image.Size;
+
+            // Setup graphics resource
             g = Graphics.FromImage(pictureBox1.Image);
             g.SmoothingMode = SmoothingMode.HighQuality;
             if (image == null) g.Clear(C2);
@@ -49,21 +57,16 @@ namespace COMP3951_Lab5_WillOtterbein_dotnet
         /// <param name="e"></param>
         void ImageMouseDown(object sender, MouseEventArgs e)
         {
-            // Determine which pen to use
-            // Left click is pen 1
-            // Right click is pen 2
-            switch (e.Button)
+            try
             {
-                case MouseButtons.Left:
-                    DrawingPen = new(C1, B1) { EndCap = LineCap.Round };
-                    break;
-                case MouseButtons.Right:
-                    DrawingPen = new(C2, B2) { EndCap = LineCap.Round };
-                    break;
+                DrawingPen = buttonToBrush[e.Button]();
+                Painting = true;
+                PreviousPoint = e.Location;
             }
-
-            Painting = true;
-            PreviousPoint = e.Location;
+            catch (Exception ex) when (ex is ArgumentNullException || ex is KeyNotFoundException)
+            {
+                MessageBox.Show("Invalid input button");
+            }
         }
 
         /// <summary>
@@ -106,7 +109,7 @@ namespace COMP3951_Lab5_WillOtterbein_dotnet
         /// <param name="e"></param>
         private void pen1Selection_Click(object sender, EventArgs e)
         {
-            using (PenMenu pm = new (C1, B1))
+            using PenMenu pm = new(C1, B1);
             {
                 if (pm.ShowDialog() == DialogResult.OK)
                 {
@@ -123,7 +126,7 @@ namespace COMP3951_Lab5_WillOtterbein_dotnet
         /// <param name="e"></param>
         private void pen2Selection_Click(object sender, EventArgs e)
         {
-            using (PenMenu pm = new(C2,B2))
+            using PenMenu pm = new(C2, B2);
             {
                 if (pm.ShowDialog() == DialogResult.OK)
                 {
@@ -141,10 +144,7 @@ namespace COMP3951_Lab5_WillOtterbein_dotnet
         {
             base.OnFormClosing(e);
 
-            ImageFileStream?.Close();
-            ImageFileStream?.Dispose();
-            pictureBox1?.Image?.Dispose();
-            
+            pictureBox1?.Image?.Dispose();            
             g.Dispose();
         }
     }

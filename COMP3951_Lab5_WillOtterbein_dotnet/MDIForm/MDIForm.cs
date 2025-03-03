@@ -1,13 +1,36 @@
 using System.Linq.Expressions;
 using System.ComponentModel;
+using System.Drawing.Imaging;
 
+///
+/// Will Otterbein
+/// March 2 2025
+///
 namespace COMP3951_Lab5_WillOtterbein_dotnet
 {
     public partial class MDIForm : Form
     {
+        /// <summary>
+        /// MDI main form constructor.
+        /// </summary>
         public MDIForm()
         {
             InitializeComponent();
+
+            // MID Layout operations
+            mdiLayoutMap = new()
+            {
+                { "cascadeToolStripMenuItem", () => LayoutMdi(MdiLayout.Cascade) },
+                { "horitonzalTilesToolStripMenuItem", () => LayoutMdi(MdiLayout.TileHorizontal) },
+                { "verticalTilesToolStripMenuItem", () =>  LayoutMdi(MdiLayout.TileVertical) },
+            };
+
+            // File operations
+            fileSystemOpMap = new()
+            {
+                { "openFileToolStripMenuItem", () => openFileHelperMethod() },
+                { "saveFileToolStripMenuItem", () => saveFileHelperMethod() }
+            };
         }
 
         /// <summary>
@@ -35,14 +58,14 @@ namespace COMP3951_Lab5_WillOtterbein_dotnet
         private void closeToolStripMenuItem_Click(object sender, EventArgs e)
         {
             // Return if there is not active window
-            if (this.ActiveMdiChild == null)
+            if (ActiveMdiChild == null)
                 return;
 
             // Show the dialog
-            ConfirmClose cc = new ConfirmClose();
+            ConfirmClose cc = new ();
             if (cc.ShowDialog() == DialogResult.OK)
             {
-                this.ActiveMdiChild?.Dispose();
+                ActiveMdiChild?.Close();
             }
         }
 
@@ -53,13 +76,13 @@ namespace COMP3951_Lab5_WillOtterbein_dotnet
         /// <param name="e"></param>
         private void MDIForm_MdiChildActivate(object sender, EventArgs e)
         {
-            if (this.ActiveMdiChild != null)
+            if (ActiveMdiChild != null)
             {
-                this.saveFileToolStripMenuItem.Enabled = true;
+                saveFileToolStripMenuItem.Enabled = true;
             }
             else
             {
-                this.saveFileToolStripMenuItem.Enabled = false;
+                saveFileToolStripMenuItem.Enabled = false;
             }
         }
 
@@ -70,15 +93,13 @@ namespace COMP3951_Lab5_WillOtterbein_dotnet
         /// <param name="e"></param>
         private void fileToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            
-            switch (((ToolStripMenuItem)sender).Name)
+            try
             {
-                case "openFileToolStripMenuItem":
-                    openFileHelperMethod();
-                    return;
-                case "saveFileToolStripMenuItem":
-                    saveFileHelperMethod();
-                    return;
+                fileSystemOpMap[((ToolStripMenuItem)sender).Name]();
+            }
+            catch (Exception ex) when (ex is ArgumentException || ex is KeyNotFoundException)
+            {
+                MessageBox.Show("Unknown file system operation.\n\n");
             }
         }
 
@@ -89,20 +110,13 @@ namespace COMP3951_Lab5_WillOtterbein_dotnet
         /// <param name="e"></param>
         private void cascadeToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            switch (((ToolStripMenuItem)sender).Name)
+            try
             {
-                case "cascadeToolStripMenuItem":
-                    this.LayoutMdi(System.Windows.Forms.MdiLayout.Cascade);
-                    return;
-                case "horitonzalTilesToolStripMenuItem":
-                    this.LayoutMdi(System.Windows.Forms.MdiLayout.TileHorizontal);
-                    return;
-                case "verticalTilesToolStripMenuItem":
-                    this.LayoutMdi(System.Windows.Forms.MdiLayout.TileVertical);
-                    return;
-                case "arrangeIconsToolStripMenuItem":
-                    this.LayoutMdi(System.Windows.Forms.MdiLayout.ArrangeIcons);
-                    return;
+                mdiLayoutMap[((ToolStripMenuItem)sender).Name]();
+            }
+            catch (Exception ex) when (ex is ArgumentException || ex is KeyNotFoundException)
+            {
+                MessageBox.Show("Unknown document layout.\n\n");
             }
         }
     }

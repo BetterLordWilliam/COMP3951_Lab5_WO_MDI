@@ -1,43 +1,56 @@
 ﻿using System.ComponentModel;
+using System.Configuration;
+using System.Drawing.Drawing2D;
 
+///
+/// Will Otterbein
+/// March 2 2025
+///
 namespace COMP3951_Lab5_WillOtterbein_dotnet
 {
     partial class MDIChildForm : Form
     {
-        // Defaults
         readonly float DEFAULT_B1 = 5f;
         readonly float DEFAULT_B2 = 20f;
         readonly Color DEFAULT_C1 = Color.FromArgb(255, 0, 0, 0);
         readonly Color DEFAULT_C2 = Color.FromArgb(255, 255, 255, 255);
 
-        // Drawing logic stuff
-        Point? PreviousPoint = null;
         bool Painting = false;
+        int _bmwidth, _bmheight;
+        float _b1thickness, _b2thickness;
+        Point? PreviousPoint = null;
+        Color _c1, _c2;
+        Graphics g;
 
-        // Settable versions of the above
-        float _b1;
+        private delegate Pen retrievePen();
+        private Dictionary<MouseButtons, retrievePen> buttonToBrush;
+
+        Pen DrawingPen { get; set; }
+        public Image? PictureBoxImage { get => pictureBox1.Image; }
+
+        // Brush 1 thickness
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public float B1
         {
-            get => _b1;
+            get => _b1thickness;
             set
             {
-                _b1 = value;
+                _b1thickness = value;
             }
         }
-        float _b2;
+
+        // Brush 2 thickness
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public float B2
         {
-            get => _b2;
+            get => _b2thickness;
             set
             {
-                _b2 = value;
+                _b2thickness = value;
             }
         }
 
         // Pen 1 color
-        Color _c1;
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public Color C1
         {
@@ -46,11 +59,11 @@ namespace COMP3951_Lab5_WillOtterbein_dotnet
             {
                 // Updating the UI screen parts that reflect the current pen1 color
                 _c1 = value;
-                this.pen1Show.BackColor = value;
+                pen1Show.BackColor = value;
             }
         }
+
         // Pen 2 Color
-        Color _c2;
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public Color C2
         {
@@ -59,12 +72,11 @@ namespace COMP3951_Lab5_WillOtterbein_dotnet
             {
                 // Updating the UI screen parts that reflect the current pen2 color
                 _c2 = value;
-                this.pen2Show.BackColor = value;
+                pen2Show.BackColor = value;
             }
         }
 
         // Width of the bit map
-        int _bmwidth;
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public int BmWidth
         {
@@ -73,11 +85,11 @@ namespace COMP3951_Lab5_WillOtterbein_dotnet
             {
                 // Updating the UI Screen parts which indicate the canvas size
                 _bmwidth = value;
-                this.widthView.Text = $"Width: {value}";
+                widthView.Text = $"Width: {value}";
             }
         }
+
         // Height of the bit map
-        int _bmheight;
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public int BmHeight
         {
@@ -86,14 +98,8 @@ namespace COMP3951_Lab5_WillOtterbein_dotnet
             {
                 // Updating the UI screen parts whcih indicate canvas size
                 _bmheight = value;
-                this.heightView.Text = $"Height: {value}";
+                heightView.Text = $"Height: {value}";
             }
         }
-
-        public Image? PictureBoxImage { get => pictureBox1.Image; }
-        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
-        public FileStream? ImageFileStream { get; set; }
-        Pen DrawingPen { get; set; }
-        Graphics g;
     }
 }
