@@ -55,7 +55,7 @@ namespace COMP3951_Lab5_WillOtterbein_dotnet
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        void ImageMouseDown(object sender, MouseEventArgs e)
+        public void ImageMouseDown(object sender, MouseEventArgs e)
         {
             try
             {
@@ -74,7 +74,7 @@ namespace COMP3951_Lab5_WillOtterbein_dotnet
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        void ImageMouseUp(object sender, MouseEventArgs e)
+        public void ImageMouseUp(object sender, MouseEventArgs e)
         {
             Painting = false;
             PreviousPoint = null;
@@ -85,7 +85,7 @@ namespace COMP3951_Lab5_WillOtterbein_dotnet
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        void ImageMouseMove(object sender, MouseEventArgs e)
+        public void ImageMouseMove(object sender, MouseEventArgs e)
         {
             // Must be in the Painting stage
             if (!Painting)

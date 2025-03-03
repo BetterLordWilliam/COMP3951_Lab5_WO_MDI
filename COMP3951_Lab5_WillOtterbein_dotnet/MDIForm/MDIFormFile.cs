@@ -31,6 +31,8 @@ namespace COMP3951_Lab5_WillOtterbein_dotnet
         private readonly Dictionary<string, setMdiLayout> mdiLayoutMap;
         private readonly Dictionary<string, fileSystemOperation> fileSystemOpMap;
 
+        public bool SaveFileToolStripStatus { get => saveFileToolStripMenuItem.Enabled; }
+
         /// <summary>
         /// Helper method for writing images to the disk for the MDI application.
         /// </summary>

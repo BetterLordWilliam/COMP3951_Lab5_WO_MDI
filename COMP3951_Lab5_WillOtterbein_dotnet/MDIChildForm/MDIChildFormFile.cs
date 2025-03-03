@@ -15,7 +15,7 @@ namespace COMP3951_Lab5_WillOtterbein_dotnet
         readonly Color DEFAULT_C1 = Color.FromArgb(255, 0, 0, 0);
         readonly Color DEFAULT_C2 = Color.FromArgb(255, 255, 255, 255);
 
-        bool Painting = false;
+        public bool Painting = false;
         int _bmwidth, _bmheight;
         float _b1thickness, _b2thickness;
         Point? PreviousPoint = null;

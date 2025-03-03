@@ -38,14 +38,16 @@ namespace COMP3951_Lab5_WillOtterbein_dotnet
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void newToolStripMenuItem_Click(object sender, EventArgs e)
+        public void newToolStripMenuItem_Click(object sender, EventArgs e)
         {
             // Show the add window dialog
             AddWindow aw = new AddWindow();
             if (aw.ShowDialog() == DialogResult.OK)
             {
-                MDIChildForm child = new(aw.WidthInput, aw.HeightInput, aw.ColorInput);
-                child.MdiParent = this;
+                MDIChildForm child = new(aw.WidthInput, aw.HeightInput, aw.ColorInput)
+                {
+                    MdiParent = this
+                };
                 child.Show();
             }
         }
@@ -55,7 +57,7 @@ namespace COMP3951_Lab5_WillOtterbein_dotnet
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void closeToolStripMenuItem_Click(object sender, EventArgs e)
+        public void closeToolStripMenuItem_Click(object sender, EventArgs e)
         {
             // Return if there is not active window
             if (ActiveMdiChild == null)
@@ -74,7 +76,7 @@ namespace COMP3951_Lab5_WillOtterbein_dotnet
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void MDIForm_MdiChildActivate(object sender, EventArgs e)
+        public void MDIForm_MdiChildActivate(object sender, EventArgs e)
         {
             if (ActiveMdiChild != null)
             {
@@ -91,7 +93,7 @@ namespace COMP3951_Lab5_WillOtterbein_dotnet
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void fileToolStripMenuItem_Click(object sender, EventArgs e)
+        public void fileToolStripMenuItem_Click(object sender, EventArgs e)
         {
             try
             {
@@ -108,7 +110,7 @@ namespace COMP3951_Lab5_WillOtterbein_dotnet
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void cascadeToolStripMenuItem_Click(object sender, EventArgs e)
+        public void cascadeToolStripMenuItem_Click(object sender, EventArgs e)
         {
             try
             {
@@ -118,6 +120,26 @@ namespace COMP3951_Lab5_WillOtterbein_dotnet
             {
                 MessageBox.Show("Unknown document layout.\n\n");
             }
+        }
+
+        /// <summary>
+        /// Testing version of the file system tool strip event handler.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        public void fileSystemOpTest(object sender, EventArgs e)
+        {
+            fileSystemOpMap[((ToolStripMenuItem)sender).Name]();
+        }
+
+        /// <summary>
+        /// Testing version of the layout tool strip event handler.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        public void layoutTest(object sender, EventArgs e)
+        {
+            mdiLayoutMap[((ToolStripMenuItem)sender).Name]();
         }
     }
 }
