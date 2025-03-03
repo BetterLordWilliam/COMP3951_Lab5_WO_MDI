@@ -4,7 +4,7 @@ using System.Drawing.Imaging;
 
 ///
 /// Will Otterbein
-/// March 2 2025
+/// March 3 2025
 ///
 namespace COMP3951_Lab5_WillOtterbein_dotnet
 {
@@ -29,6 +29,7 @@ namespace COMP3951_Lab5_WillOtterbein_dotnet
             fileSystemOpMap = new()
             {
                 { "openFileToolStripMenuItem", () => openFileHelperMethod() },
+                { "openInternetToolStripMenuItem", () => openImageFromInternet() },
                 { "saveFileToolStripMenuItem", () => saveFileHelperMethod() }
             };
         }
@@ -44,11 +45,7 @@ namespace COMP3951_Lab5_WillOtterbein_dotnet
             AddWindow aw = new AddWindow();
             if (aw.ShowDialog() == DialogResult.OK)
             {
-                MDIChildForm child = new(aw.WidthInput, aw.HeightInput, aw.ColorInput)
-                {
-                    MdiParent = this
-                };
-                child.Show();
+                addChild(width: aw.WidthInput, height: aw.HeightInput, color: aw.ColorInput);
             }
         }
 

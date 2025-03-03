@@ -11,6 +11,9 @@ using System.Windows.Forms;
 
 namespace COMP3951_Lab5_WillOtterbein_dotnet
 {
+    /// <summary>
+    /// Form for the pen menu, configure pen colour & thickness.
+    /// </summary>
     public partial class PenMenu : Form
     {
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]

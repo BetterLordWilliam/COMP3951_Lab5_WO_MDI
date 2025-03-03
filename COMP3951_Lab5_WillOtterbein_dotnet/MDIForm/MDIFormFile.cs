@@ -1,10 +1,11 @@
 ﻿using System.Data;
 using System.Security;
 using System.Drawing.Imaging;
+using COMP3951_Lab5_WillOtterbein_dotnet.MDIMenus;
 
 ///
 /// Will Otterbein
-/// March 2 2025
+/// March 3 2025
 ///
 namespace COMP3951_Lab5_WillOtterbein_dotnet
 {
@@ -18,6 +19,9 @@ namespace COMP3951_Lab5_WillOtterbein_dotnet
         PNG = 3
     }
 
+    /// <summary>
+    /// MDI form class, contains implementation details for the MDI form.
+    /// </summary>
     partial class MDIForm : Form
     {
         private delegate void setMdiLayout();
@@ -32,6 +36,22 @@ namespace COMP3951_Lab5_WillOtterbein_dotnet
         private readonly Dictionary<string, fileSystemOperation> fileSystemOpMap;
 
         public bool SaveFileToolStripStatus { get => saveFileToolStripMenuItem.Enabled; }
+
+        /// <summary>
+        /// Helper method for adding images to the parent MDI application.
+        /// </summary>
+        /// <param name="image"></param>
+        /// <param name="width"></param>
+        /// <param name="height"></param>
+        private void addChild(int? width = null, int? height = null, Color? color = null, string? title = null, Image? image = null)
+        {
+            MDIChildForm child = new(width, height, color, title, image)
+            {
+                MdiParent = this,
+                ClientSize = image?.Size ?? new Size(width ?? 100, height ?? 100)
+            };
+            child.Show();
+        }
 
         /// <summary>
         /// Helper method for writing images to the disk for the MDI application.
@@ -94,16 +114,40 @@ namespace COMP3951_Lab5_WillOtterbein_dotnet
                 using FileStream fs = new(o.FileName, FileMode.Open, FileAccess.Read);
                 {
                     Image i = Image.FromStream(fs);
-                    MDIChildForm child = new(i.Width, i.Height, title: o.FileName, image: i)
-                    {
-                        MdiParent = this
-                    };
-                    child.Show();
+                    addChild(image: i, title: o.FileName);
                 }
             }
             catch (FileNotFoundException)
             {
                 MessageBox.Show("Could not find the specified file.");
+            }
+            catch (IOException e)
+            {
+                MessageBox.Show($"Could not open the specified file.\n\nDetails:\n\n{e.Message}\n\n");
+            }
+        }
+    
+        /// <summary>
+        /// Helper method for loading images from the internet for the MDI application.
+        /// </summary>
+        public void openImageFromInternet()
+        {
+            // Open a file from the disk
+            try
+            {
+                // Show the internet image dialog box
+                OpenImageFromInternet o = new();
+
+                // Dialog not OK or the image is null
+                if (o.ShowDialog() != DialogResult.OK || o.InternetImage == null)
+                    return;
+                
+                // Add mdi child
+                addChild(image: o.InternetImage);
+            }
+            catch (FileNotFoundException e)
+            {
+                MessageBox.Show($"Could not find the specified file.\n\nDetails:\n\n{e.Message}\n\n");
             }
             catch (IOException e)
             {

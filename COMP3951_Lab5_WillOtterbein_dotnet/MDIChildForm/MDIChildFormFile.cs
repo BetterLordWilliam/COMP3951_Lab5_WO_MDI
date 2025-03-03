@@ -8,6 +8,9 @@ using System.Drawing.Drawing2D;
 ///
 namespace COMP3951_Lab5_WillOtterbein_dotnet
 {
+    /// <summary>
+    /// MDI Child FOrm class, contains implementation details for the child form.
+    /// </summary>
     partial class MDIChildForm : Form
     {
         readonly float DEFAULT_B1 = 5f;
