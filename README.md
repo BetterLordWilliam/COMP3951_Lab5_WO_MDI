@@ -38,7 +38,7 @@ This section describes how to create a new drawing.
 ![New window](./.gitresources/new_window_end.png)
 
 ---
-### Loading Images from the File System 
+### Loading Images from the File System 📁
 This section describes how to load an image for drawing from the file system.
 
 1. Click **File** in the main window toolbar.
@@ -54,7 +54,7 @@ This section describes how to load an image for drawing from the file system.
 > **Note:** The width/height will be that of the image, the main and secondary colours are the defaults, black and white.
 
 ---
-### Loading Images from the Internet
+### Loading Images from the Internet 🛜
 This section describes how to load an image for drawing from the file system.
 
 1. Click **File** in the main window toolbar.
@@ -74,7 +74,7 @@ This section describes how to load an image for drawing from the file system.
 ![Internet file open in canvas example](./.gitresources/file_from_internet_success.png)
 
 ---
-### Saving Drawings to Images
+### Saving Drawings to Images 💾
 This section describes how you can save files to the file system.
 
 1. Click **File** in the main window toolbar.
