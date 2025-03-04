@@ -12,6 +12,7 @@ This section explains how to draw with this application.
 2. Right-click to draw with the secondary pen, white ⬜ by default.
 
 > ![NOTE]
+> 
 > Pen configuration is explained in the following table
 
 
