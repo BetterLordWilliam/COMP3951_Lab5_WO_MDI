@@ -36,7 +36,6 @@ namespace COMP3951_Lab5_WillOtterbein_dotnet
             heightView = new ToolStripLabel();
             toolStripSeparator1 = new ToolStripSeparator();
             widthView = new ToolStripLabel();
-            toolStripLabel2 = new ToolStripSeparator();
             pen1Selection = new ToolStripButton();
             pen1Show = new ToolStripButton();
             toolStripSeparator2 = new ToolStripSeparator();
@@ -52,9 +51,8 @@ namespace COMP3951_Lab5_WillOtterbein_dotnet
             // 
             pictureBox1.Dock = DockStyle.Fill;
             pictureBox1.Location = new Point(0, 0);
-            pictureBox1.Margin = new Padding(5, 6, 5, 6);
             pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(1371, 900);
+            pictureBox1.Size = new Size(800, 450);
             pictureBox1.TabIndex = 0;
             pictureBox1.TabStop = false;
             pictureBox1.MouseDown += ImageMouseDown;
@@ -68,21 +66,22 @@ namespace COMP3951_Lab5_WillOtterbein_dotnet
             panel1.Controls.Add(pictureBox1);
             panel1.Dock = DockStyle.Fill;
             panel1.Location = new Point(0, 0);
-            panel1.Margin = new Padding(5, 6, 5, 6);
             panel1.Name = "panel1";
-            panel1.Size = new Size(1371, 900);
+            panel1.Size = new Size(800, 450);
             panel1.TabIndex = 1;
             // 
             // toolStrip1
             // 
             toolStrip1.BackColor = SystemColors.Control;
             toolStrip1.CanOverflow = false;
+            toolStrip1.GripStyle = ToolStripGripStyle.Hidden;
             toolStrip1.ImageScalingSize = new Size(28, 28);
-            toolStrip1.Items.AddRange(new ToolStripItem[] { heightView, toolStripSeparator1, widthView, toolStripLabel2, pen1Selection, pen1Show, toolStripSeparator2, pen2Selection, pen2Show, nameView });
+            toolStrip1.Items.AddRange(new ToolStripItem[] { heightView, toolStripSeparator1, widthView, pen1Selection, pen1Show, toolStripSeparator2, pen2Selection, pen2Show, nameView });
             toolStrip1.Location = new Point(0, 0);
             toolStrip1.Name = "toolStrip1";
-            toolStrip1.Padding = new Padding(0, 0, 3, 0);
-            toolStrip1.Size = new Size(1371, 38);
+            toolStrip1.Padding = new Padding(0, 0, 2, 0);
+            toolStrip1.RenderMode = ToolStripRenderMode.System;
+            toolStrip1.Size = new Size(800, 35);
             toolStrip1.TabIndex = 1;
             toolStrip1.Text = "toolStrip1";
             // 
@@ -90,27 +89,21 @@ namespace COMP3951_Lab5_WillOtterbein_dotnet
             // 
             heightView.Alignment = ToolStripItemAlignment.Right;
             heightView.Name = "heightView";
-            heightView.Size = new Size(150, 32);
+            heightView.Size = new Size(86, 32);
             heightView.Text = "toolStripLabel2";
             // 
             // toolStripSeparator1
             // 
             toolStripSeparator1.Alignment = ToolStripItemAlignment.Right;
             toolStripSeparator1.Name = "toolStripSeparator1";
-            toolStripSeparator1.Size = new Size(6, 38);
+            toolStripSeparator1.Size = new Size(6, 35);
             // 
             // widthView
             // 
             widthView.Alignment = ToolStripItemAlignment.Right;
             widthView.Name = "widthView";
-            widthView.Size = new Size(150, 32);
+            widthView.Size = new Size(86, 32);
             widthView.Text = "toolStripLabel1";
-            // 
-            // toolStripLabel2
-            // 
-            toolStripLabel2.Alignment = ToolStripItemAlignment.Right;
-            toolStripLabel2.Name = "toolStripLabel2";
-            toolStripLabel2.Size = new Size(6, 38);
             // 
             // pen1Selection
             // 
@@ -120,7 +113,7 @@ namespace COMP3951_Lab5_WillOtterbein_dotnet
             pen1Selection.Image = (Image)resources.GetObject("pen1Selection.Image");
             pen1Selection.ImageTransparentColor = Color.Magenta;
             pen1Selection.Name = "pen1Selection";
-            pen1Selection.Size = new Size(22, 22);
+            pen1Selection.Size = new Size(32, 32);
             pen1Selection.Text = "Pen 1";
             pen1Selection.Click += pen1Selection_Click;
             // 
@@ -131,13 +124,13 @@ namespace COMP3951_Lab5_WillOtterbein_dotnet
             pen1Show.Image = (Image)resources.GetObject("pen1Show.Image");
             pen1Show.ImageTransparentColor = Color.Magenta;
             pen1Show.Name = "pen1Show";
-            pen1Show.Size = new Size(40, 32);
+            pen1Show.Size = new Size(23, 32);
             pen1Show.Text = "toolStripButton1";
             // 
             // toolStripSeparator2
             // 
             toolStripSeparator2.Name = "toolStripSeparator2";
-            toolStripSeparator2.Size = new Size(6, 38);
+            toolStripSeparator2.Size = new Size(6, 35);
             // 
             // pen2Selection
             // 
@@ -145,7 +138,7 @@ namespace COMP3951_Lab5_WillOtterbein_dotnet
             pen2Selection.Image = (Image)resources.GetObject("pen2Selection.Image");
             pen2Selection.ImageTransparentColor = Color.Magenta;
             pen2Selection.Name = "pen2Selection";
-            pen2Selection.Size = new Size(40, 32);
+            pen2Selection.Size = new Size(32, 32);
             pen2Selection.Text = "Pen 2";
             pen2Selection.Click += pen2Selection_Click;
             // 
@@ -156,7 +149,7 @@ namespace COMP3951_Lab5_WillOtterbein_dotnet
             pen2Show.Image = (Image)resources.GetObject("pen2Show.Image");
             pen2Show.ImageTransparentColor = Color.Magenta;
             pen2Show.Name = "pen2Show";
-            pen2Show.Size = new Size(40, 32);
+            pen2Show.Size = new Size(23, 32);
             pen2Show.Text = "toolStripButton1";
             // 
             // nameView
@@ -167,14 +160,13 @@ namespace COMP3951_Lab5_WillOtterbein_dotnet
             // 
             // MDIChildForm
             // 
-            AutoScaleDimensions = new SizeF(12F, 30F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             AutoSize = true;
             BackColor = SystemColors.ControlDark;
-            ClientSize = new Size(1371, 900);
+            ClientSize = new Size(800, 450);
             Controls.Add(toolStrip1);
             Controls.Add(panel1);
-            Margin = new Padding(5, 6, 5, 6);
             Name = "MDIChildForm";
             RightToLeft = RightToLeft.No;
             Text = "Will MDI Child Form";
@@ -199,7 +191,6 @@ namespace COMP3951_Lab5_WillOtterbein_dotnet
         private ToolStripButton pen1Show;
         private ToolStripButton pen2Show;
         private ToolStripSeparator toolStripSeparator1;
-        private ToolStripSeparator toolStripLabel2;
         private ToolStripLabel nameView;
     }
 }
