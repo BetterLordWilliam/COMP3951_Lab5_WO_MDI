@@ -60,6 +60,7 @@ This section describes how to load an image for drawing from the file system.
 1. Click **File** in the main window toolbar.
 2. From the File dropdown, click **Open Internet**.
 3. Enter the URL of your image
+4. Click **Load**.
 
 > **Note:** If a non-image resources is indicated by the URL, the loading will fail and you will need to specify a new URL to an image resource.
 
