@@ -11,8 +11,7 @@ This section explains how to draw with this application.
 1. Left-click to draw with the main pen, black ⬛ by default.
 2. Right-click to draw with the secondary pen, white ⬜ by default.
 
-> ![NOTE]
-> 
+> 📘 **Note** <br />
 > Pen configuration is explained in the following table
 
 
@@ -54,7 +53,7 @@ This section describes how to load an image for drawing from the file system.
 
 ![File open in canvas example](./.gitresources/file_from_desktop_success.png)
 
-> ![NOTE] 
+> 📘 **Note** <br />
 > The width/height will be that of the image, the main and secondary colours are the defaults, black and white.
 
 ---
@@ -66,7 +65,7 @@ This section describes how to load an image for drawing from the file system.
 3. Enter the URL of your image
 4. Click **Load**.
 
-> ![IMPORTANT]
+> ⚠️ **Warning** <br />
 > If a non-image resources is indicated by the URL, the loading will fail and you will need to specify a new URL to an image resource.
 
 4. Upon successful retrieval of the image, the preview pane will be populated w/ your image.
