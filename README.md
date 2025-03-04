@@ -53,7 +53,7 @@ This section describes how to load an image for drawing from the file system.
 
 ![File open in canvas example](./.gitresources/file_from_desktop_success.png)
 
-> 📘 **Note** <br />
+> [!NOTE]
 > The width/height will be that of the image, the main and secondary colours are the defaults, black and white.
 
 ---
@@ -65,7 +65,7 @@ This section describes how to load an image for drawing from the file system.
 3. Enter the URL of your image
 4. Click **Load**.
 
-> ⚠️ **Warning** <br />
+> [!WARNING]
 > If a non-image resources is indicated by the URL, the loading will fail and you will need to specify a new URL to an image resource.
 
 4. Upon successful retrieval of the image, the preview pane will be populated w/ your image.
