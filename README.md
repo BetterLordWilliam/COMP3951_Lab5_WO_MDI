@@ -5,13 +5,16 @@ Will Otterbein, COMP3951 Lab5, March 3 2025
 The following sections outline the fetures of this application, explaining how to use the application.
 
 ---
-### Drawing ✏️
+### ✏️ Drawing
 This section explains how to draw with this application.
 
 1. Left-click to draw with the main pen, black ⬛ by default.
 2. Right-click to draw with the secondary pen, white ⬜ by default.
 
-> **Note:** Pen configuration is explained in the following table
+> 📘 **Note**
+> 
+> Pen configuration is explained in the following table
+
 
 | Pen                                                           | Pen Colour                            | Pen Thickness                                     | Default Configuration                                     |
 | ------------------------------------------------------------- | ------------------------------------- | ------------------------------------------------- | --------------------------------------------------------- |
@@ -19,7 +22,7 @@ This section explains how to draw with this application.
 | Secondary pen ![Pen 2](./.gitresources/pen_menu_pen_2.png)    | Click **Select** in the pop-up pen menu | Enter a number > 0 or use the up-down selectors   | ![Pen color](./.gitresources/pen_menu_pen_colour_1.png)   |
 
 ---
-### Creating New Drawings 🖼️
+### 🖼️ Creating New Drawings
 This section describes how to create a new drawing.
 
 1. Click **Window** in the main window toolbar.
@@ -38,7 +41,7 @@ This section describes how to create a new drawing.
 ![New window](./.gitresources/new_window_end.png)
 
 ---
-### Loading Images from the File System 📁
+### 📁 Loading Images from the File System
 This section describes how to load an image for drawing from the file system.
 
 1. Click **File** in the main window toolbar.
@@ -51,10 +54,12 @@ This section describes how to load an image for drawing from the file system.
 
 ![File open in canvas example](./.gitresources/file_from_desktop_success.png)
 
-> **Note:** The width/height will be that of the image, the main and secondary colours are the defaults, black and white.
+> 📘 **Note**
+> 
+> The width/height will be that of the image, the main and secondary colours are the defaults, black and white.
 
 ---
-### Loading Images from the Internet 🛜
+### 🛜 Loading Images from the Internet 
 This section describes how to load an image for drawing from the file system.
 
 1. Click **File** in the main window toolbar.
@@ -62,7 +67,9 @@ This section describes how to load an image for drawing from the file system.
 3. Enter the URL of your image
 4. Click **Load**.
 
-> **Note:** If a non-image resources is indicated by the URL, the loading will fail and you will need to specify a new URL to an image resource.
+> ⚠️ **Warning**
+> 
+> If a non-image resources is indicated by the URL, the loading will fail and you will need to specify a new URL to an image resource.
 
 4. Upon successful retrieval of the image, the preview pane will be populated w/ your image.
 
@@ -74,7 +81,7 @@ This section describes how to load an image for drawing from the file system.
 ![Internet file open in canvas example](./.gitresources/file_from_internet_success.png)
 
 ---
-### Saving Drawings to Images 💾
+### 💾 Saving Drawings to Images
 This section describes how you can save files to the file system.
 
 1. Click **File** in the main window toolbar.
