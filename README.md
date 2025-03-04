@@ -11,7 +11,7 @@ This section explains how to draw with this application.
 1. Left-click to draw with the main pen, black ⬛ by default.
 2. Right-click to draw with the secondary pen, white ⬜ by default.
 
-> 📘 **Note** <br />
+> [!NOTE] <br />
 > Pen configuration is explained in the following table
 
 
