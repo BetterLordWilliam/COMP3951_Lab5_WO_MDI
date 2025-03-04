@@ -50,9 +50,8 @@
             menuStrip1.Location = new Point(0, 0);
             menuStrip1.MdiWindowListItem = windowsToolStripMenuItem;
             menuStrip1.Name = "menuStrip1";
-            menuStrip1.Padding = new Padding(10, 4, 0, 4);
             menuStrip1.RenderMode = ToolStripRenderMode.System;
-            menuStrip1.Size = new Size(2030, 42);
+            menuStrip1.Size = new Size(1184, 24);
             menuStrip1.TabIndex = 1;
             menuStrip1.Text = "menuStrip1";
             // 
@@ -60,49 +59,49 @@
             // 
             fileToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { openFileToolStripMenuItem, openInternetToolStripMenuItem, saveFileToolStripMenuItem });
             fileToolStripMenuItem.Name = "fileToolStripMenuItem";
-            fileToolStripMenuItem.Size = new Size(62, 34);
+            fileToolStripMenuItem.Size = new Size(37, 20);
             fileToolStripMenuItem.Text = "File";
             // 
             // openFileToolStripMenuItem
             // 
             openFileToolStripMenuItem.Name = "openFileToolStripMenuItem";
-            openFileToolStripMenuItem.Size = new Size(315, 40);
-            openFileToolStripMenuItem.Text = "OpenFile";
+            openFileToolStripMenuItem.Size = new Size(180, 22);
+            openFileToolStripMenuItem.Text = "Open File";
             openFileToolStripMenuItem.Click += fileToolStripMenuItem_Click;
             // 
             // openInternetToolStripMenuItem
             // 
             openInternetToolStripMenuItem.Name = "openInternetToolStripMenuItem";
-            openInternetToolStripMenuItem.Size = new Size(315, 40);
-            openInternetToolStripMenuItem.Text = "OpenFromInternet";
+            openInternetToolStripMenuItem.Size = new Size(180, 22);
+            openInternetToolStripMenuItem.Text = "Open Internet";
             openInternetToolStripMenuItem.Click += fileToolStripMenuItem_Click;
             // 
             // saveFileToolStripMenuItem
             // 
             saveFileToolStripMenuItem.Enabled = false;
             saveFileToolStripMenuItem.Name = "saveFileToolStripMenuItem";
-            saveFileToolStripMenuItem.Size = new Size(315, 40);
-            saveFileToolStripMenuItem.Text = "SaveFile";
+            saveFileToolStripMenuItem.Size = new Size(180, 22);
+            saveFileToolStripMenuItem.Text = "Save File";
             saveFileToolStripMenuItem.Click += fileToolStripMenuItem_Click;
             // 
             // windowsToolStripMenuItem
             // 
             windowsToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { newToolStripMenuItem, closeToolStripMenuItem, arrangeToolStripMenuItem });
             windowsToolStripMenuItem.Name = "windowsToolStripMenuItem";
-            windowsToolStripMenuItem.Size = new Size(116, 34);
+            windowsToolStripMenuItem.Size = new Size(68, 20);
             windowsToolStripMenuItem.Text = "Windows";
             // 
             // newToolStripMenuItem
             // 
             newToolStripMenuItem.Name = "newToolStripMenuItem";
-            newToolStripMenuItem.Size = new Size(205, 40);
+            newToolStripMenuItem.Size = new Size(116, 22);
             newToolStripMenuItem.Text = "New";
             newToolStripMenuItem.Click += newToolStripMenuItem_Click;
             // 
             // closeToolStripMenuItem
             // 
             closeToolStripMenuItem.Name = "closeToolStripMenuItem";
-            closeToolStripMenuItem.Size = new Size(205, 40);
+            closeToolStripMenuItem.Size = new Size(116, 22);
             closeToolStripMenuItem.Text = "Close";
             closeToolStripMenuItem.Click += closeToolStripMenuItem_Click;
             // 
@@ -110,39 +109,38 @@
             // 
             arrangeToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { cascadeToolStripMenuItem, horitonzalTilesToolStripMenuItem, verticalTilesToolStripMenuItem });
             arrangeToolStripMenuItem.Name = "arrangeToolStripMenuItem";
-            arrangeToolStripMenuItem.Size = new Size(205, 40);
+            arrangeToolStripMenuItem.Size = new Size(116, 22);
             arrangeToolStripMenuItem.Text = "Arrange";
             // 
             // cascadeToolStripMenuItem
             // 
             cascadeToolStripMenuItem.Name = "cascadeToolStripMenuItem";
-            cascadeToolStripMenuItem.Size = new Size(274, 40);
+            cascadeToolStripMenuItem.Size = new Size(156, 22);
             cascadeToolStripMenuItem.Text = "Cascade";
             cascadeToolStripMenuItem.Click += cascadeToolStripMenuItem_Click;
             // 
             // horitonzalTilesToolStripMenuItem
             // 
             horitonzalTilesToolStripMenuItem.Name = "horitonzalTilesToolStripMenuItem";
-            horitonzalTilesToolStripMenuItem.Size = new Size(274, 40);
+            horitonzalTilesToolStripMenuItem.Size = new Size(156, 22);
             horitonzalTilesToolStripMenuItem.Text = "Horitonzal Tiles";
             horitonzalTilesToolStripMenuItem.Click += cascadeToolStripMenuItem_Click;
             // 
             // verticalTilesToolStripMenuItem
             // 
             verticalTilesToolStripMenuItem.Name = "verticalTilesToolStripMenuItem";
-            verticalTilesToolStripMenuItem.Size = new Size(274, 40);
+            verticalTilesToolStripMenuItem.Size = new Size(156, 22);
             verticalTilesToolStripMenuItem.Text = "Vertical Tiles";
             verticalTilesToolStripMenuItem.Click += cascadeToolStripMenuItem_Click;
             // 
             // MDIForm
             // 
-            AutoScaleDimensions = new SizeF(12F, 30F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(2030, 1522);
+            ClientSize = new Size(1184, 761);
             Controls.Add(menuStrip1);
             IsMdiContainer = true;
             MainMenuStrip = menuStrip1;
-            Margin = new Padding(5, 6, 5, 6);
             Name = "MDIForm";
             Text = "Will MDI Application";
             MdiChildActivate += MDIForm_MdiChildActivate;
